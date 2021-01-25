@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Add multiple geometries from one GeoJSON source</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
+
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://dc-js.github.io/dc.js/js/crossfilter.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/4.2.3/dc.min.js"></script>
+  <script src='https://unpkg.com/@turf/turf/turf.min.js'></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.10/dc.min.css" />
+  <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<body>
+  <div id="map"></div>
+  <div id="controls">
+    <button class="semi-transparent-button" id="heatmap">Heatmap</button>
+    <button class="semi-transparent-button" id="revenue">Company Revenue</button>
+    <button class="semi-transparent-button" id="cost">Cost to connect</button>
+    <button class="semi-transparent-button" id="num-offices">Number of offices in company</button>
+    <button class="semi-transparent-button" id="nearby-offices">Number of offices within 500m</button>
+    <button class="semi-transparent-button" id="sustainability">Sustainability Score</button>
+    <button class="semi-transparent-button" id="equality">Equality Score</button>
+    <button class="semi-transparent-button" id="score">Tele2 Prospect Score</button>
+  </div>
+  <div id='explore'>
+    <div style="text-align: center">Revenue</div>
+    <div id='revenue-chart'></div>
+    <div style="text-align: center">Cost</div>
+    <div id='cost-chart'></div>
+    <div style="text-align: center">Number of offices</div>
+    <div id='num-offices-chart'></div>
+    <div style="text-align: center">Nearby offices</div>
+    <div id='nearby-offices-chart'></div>
+    <div style="text-align: center">Sustainability</div>
+    <div id='sustainability-chart'></div>
+    <div style="text-align: center">Equality</div>
+    <div id='equality-chart'></div>
+    <div style="text-align: center">Score</div>
+    <div id='score-chart'></div>
+  </div>
+  <div id="bottom-panel">
+    <table id="table" width="100%" cellspacing="0" cellpadding="2" style="table-layout: fixed;">
+      <thead>
+        <tr>
+          <th align="left" style="width: 80px">Office</th>
+          <th align="left" style="width: 80px">Company</th>
+          <th align="left" style="width: 80px">Revenue</th>
+          <th align="left" style="width: 80px"># Offices</th>
+          <th align="left" style="width: 80px"># Nearby Offices</th>
+          <th align="left" style="width: 80px">Sustainability Score</th>
+          <th align="left" style="width: 80px">Equality Score</th>
+          <th align="left" style="width: 80px">Total Score</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  <script src="map.js"></script>
+  <script src="filters.js"></script>
+
+  <script>
+
+    (async () => {
+      try {
+        const map = await initMap();
+        const offices = await d3.json("data/offices.json");
+
+        const scoreFunction = (office) => {
+          return office.properties.revenue;
+        };
+
+        offices.features.forEach((o) => o.properties.score = scoreFunction(o))
+
+        const configuration = [
+          {
+            id: 'heatmap',
+            layers: ['hue', 'points'],
+            button: 'heatmap'
+          },
+          {
+            id: 'revenue',
+            layers: ['revenue'],
+            button: 'revenue',
+            chart: 'revenue-chart',
+            dimension: 'revenue',
+            chartColors: d3.scaleLinear().domain([0, 100, 200, 1000]).range(["yellow", "orange", "green", "greenyellow"]),
+            chartDomain: d3.scaleLinear().domain([0, 1000]),
+            chartUnits: 100
+          },
+          {
+            id: 'cost',
+            layers: ['cost'],
+            button: 'cost',
+            chart: 'cost-chart',
+            dimension: 'cost',
+            chartColors: d3.scaleLinear().domain([0, 100, 500]).range(["green", "yellow", "red"]),
+            chartDomain: d3.scaleLinear().domain([0, 500]),
+            chartUnits: 500
+          },
+          {
+            id: 'num-offices',
+            layers: ['numOffices'],
+            button: 'num-offices',
+            chart: 'num-offices-chart',
+            dimension: 'numOffices',
+            chartColors: d3.scaleLinear().domain([0, 25, 50]).range(["yellow", "green", "greenyellow"]),
+            chartDomain: d3.scaleLinear().domain([0, 50]),
+            chartUnits: 50
+          },
+          {
+            id: 'nearbyOffices',
+            layers: ['nearbyOffices'],
+            button: 'nearby-offices',
+            chart: 'nearby-offices-chart',
+            dimension: 'nearby',
+            chartColors: d3.scaleLinear().domain([0, 10, 50]).range(["yellow", "green", "greenyellow"]),
+            chartDomain: d3.scaleLinear().domain([0, 50]),
+            chartUnits: 50
+          },
+          {
+            id: 'sustainability',
+            layers: ['sustainability'],
+            button: 'sustainability',
+            chart: 'sustainability-chart',
+            dimension: 'sustainability',
+            chartColors: d3.scaleLinear().domain([0, 20, 80, 100]).range(["red", "orange", "yellow", "green"]),
+            chartDomain: d3.scaleLinear().domain([0, 100]),
+            chartUnits: 100
+          },
+          {
+            id: 'equality',
+            layers: ['equality'],
+            button: 'equality',
+            chart: 'equality-chart',
+            dimension: 'equality',
+            chartColors: d3.scaleLinear().domain([0, 25, 50, 75, 100]).range(["red", "orange", "yellow", "green", "greenyellow"]),
+            chartDomain: d3.scaleLinear().domain([0, 100]),
+            chartUnits: 100
+          },
+          {
+            id: 'score',
+            layers: ['score'],
+            button: 'score',
+            chart: 'score-chart',
+            dimension: 'score',
+            chartColors: d3.scaleLinear().domain([0, 50, 100]).range(["green", "yellow", "red"]),
+            chartDomain: d3.scaleLinear().domain([0, 100]),
+            chartUnits: 100
+          }
+        ]
+
+        configuration.forEach((c) => {
+          document
+            .getElementById(c.button)
+            .addEventListener('click', function () {
+              configuration.map((c2) => c2.layers).flat().forEach((l) => map.setLayoutProperty(l, 'visibility', 'none'));
+              c.layers.forEach((l) => map.setLayoutProperty(l, 'visibility', 'visible'));
+            });
+        });
+
+        await initFilters(configuration, map, offices);
+
+      } catch (e) {
+        console.log(e)
+      }
+    })();
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>

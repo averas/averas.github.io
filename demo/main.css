@@ -1,0 +1,86 @@
+*:focus {
+    outline: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 420px;
+}
+
+#controls {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+#explore {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 400px;
+    padding: 10px;
+    background: rgba(0, 0, 0);
+    color: white;
+}
+
+#bottom-panel {
+  font-size: 12px;
+  color: #59C6E0;
+  position: absolute;
+  left: 0;
+  right: 420px;
+  bottom: 0;
+  height: 150px;
+  overflow: scroll;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+button.semi-transparent-button {
+margin: 0 auto;
+padding: 4px;
+background: rgba(255, 255, 255, 0.1);
+color: #fff;
+text-align: center;
+text-decoration: none;
+letter-spacing: 1px;
+transition: all 0.3s ease-out;
+border: 0.5px solid greenyellow;
+
+
+}
+button.semi-transparent-button:hover,
+.semi-transparent-button:active {
+background: rgba(40, 255, 10, 0.2);
+transition: all 0.5s ease-in;
+}
+
+svg text {
+  fill: #eee;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.dc-chart g.row text {
+  fill: #eee;
+}
+.dc-chart .axis path, .dc-chart .axis line {
+  stroke: #444;
+}
+
+.dc-chart .y .tick text {
+    font: 6px sans-serif;
+}
+
+.dc-chart rect.deselected {
+  fill: rgba(255,255,255,0.4);
+}
