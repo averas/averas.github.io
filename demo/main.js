@@ -1,7 +1,7 @@
 (async () => {
     try {
         const map = await initMap();
-        const offices = await d3.json("data/offices.json");
+        const offices = await d3.json(`${baseUrl}data/offices.json`);
 
         offices.features.forEach((o) => o.properties.score = scoreFunction(o))
 

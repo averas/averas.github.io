@@ -51,7 +51,7 @@ initMap = () => {
 
             map.addSource('sites', {
                 'type': 'geojson',
-                'data': 'data/sites.json'
+                'data': `${baseUrl}data/sites.json`
             });
 
             map.addLayer({
