@@ -4,7 +4,7 @@ initMap = () => {
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/dark-v8',
-            center: [18.08, 59.31],
+            center: [18.21, 59.31],
             pitch: 45,
             zoom: 9.5,
             attributionControl: false
