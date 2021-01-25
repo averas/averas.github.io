@@ -128,7 +128,7 @@ initMap = () => {
                 layout: {
                     "text-field": ["get", "office"],
                     "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                    "text-offset": [0, 0.6],
+                    "text-offset": [0, 2.5],
                     "text-anchor": "top",
                     "text-size": {
                         "base": 1,
@@ -154,18 +154,19 @@ initMap = () => {
             });
 
             map.addLayer({
-                id: "sites-points",
+                id: "sites-hue",
                 type: "circle",
                 source: 'sites',
                 "paint": {
                     "circle-pitch-alignment": 'map',
-                    "circle-color": "#0000fE",
+                    "circle-color": "#FF0089",
+                    "circle-opacity": 0.8,
                     "circle-radius": {
                         "base": 1,
                         "stops": [
                             [
                                 1,
-                                0.5
+                                0
                             ],
                             [
                                 5,
@@ -173,15 +174,48 @@ initMap = () => {
                             ],
                             [
                                 11,
-                                6
+                                40
                             ],
                             [
                                 18,
-                                20
+                                120
                             ]
                         ]
                     },
-                    "circle-blur": 0
+                    "circle-blur": 0.8
+                },
+
+            });
+
+            map.addLayer({
+                id: "sites-points",
+                type: "circle",
+                source: 'sites',
+                "paint": {
+                    "circle-pitch-alignment": 'map',
+                    "circle-color": "black",
+                    "circle-radius": {
+                        "base": 1,
+                        "stops": [
+                            [
+                                1,
+                                1
+                            ],
+                            [
+                                5,
+                                2
+                            ],
+                            [
+                                11,
+                                13
+                            ],
+                            [
+                                18,
+                                50
+                            ]
+                        ]
+                    },
+                    "circle-blur": 0.8
                 },
 
             });
@@ -194,7 +228,13 @@ initMap = () => {
                     'visibility': "none"
                 },
                 'paint': {
-                    'fill-extrusion-color': '#22ff22',
+                    'fill-extrusion-color': [
+                        "interpolate", ["linear"], ['get', 'revenue'],
+                        0, 'red',
+                        100, 'yellow',
+                        200, 'green',
+                        1000, '#55ff55'
+                    ],
                     'fill-extrusion-height': ['get', 'revenue'],
                     'fill-extrusion-base': 0,
                     'fill-extrusion-opacity': 0.8
@@ -212,8 +252,9 @@ initMap = () => {
                 'paint': {
                     'fill-extrusion-color': [
                         "interpolate", ["linear"], ['get', 'cost'],
-                        0, 'green',
+                        0, '#55ff55',
                         100, 'yellow',
+                        250, 'red',
                         500, 'red'
                     ],
                     'fill-extrusion-height': ['*', 10, ['get', 'cost']],
@@ -231,8 +272,13 @@ initMap = () => {
                     'visibility': "none"
                 },
                 'paint': {
-                    'fill-extrusion-color': '#22ffff',
-                    'fill-extrusion-height': ['get', 'numOffices'],
+                    'fill-extrusion-color': [
+                        "interpolate", ["linear"], ['get', 'numOffices'],
+                        0, 'red',
+                        5, 'yellow',
+                        50, '#55ff55'
+                    ],
+                    'fill-extrusion-height': ['*', 20, ['get', 'numOffices']],
                     'fill-extrusion-base': 0,
                     'fill-extrusion-opacity': 0.8
                 }
@@ -247,8 +293,13 @@ initMap = () => {
                     'visibility': "none"
                 },
                 'paint': {
-                    'fill-extrusion-color': '#ffff22',
-                    'fill-extrusion-height': ['get', 'nearby'],
+                    'fill-extrusion-color': [
+                        "interpolate", ["linear"], ['get', 'nearby'],
+                        0, 'red',
+                        5, 'yellow',
+                        50, '#55ff55'
+                    ],
+                    'fill-extrusion-height': ['*', 20, ['get', 'nearby']],
                     'fill-extrusion-base': 0,
                     'fill-extrusion-opacity': 0.8
                 }
@@ -263,8 +314,13 @@ initMap = () => {
                     'visibility': "none"
                 },
                 'paint': {
-                    'fill-extrusion-color': '#ffff22',
-                    'fill-extrusion-height': ['get', 'sustainability'],
+                    'fill-extrusion-color': [
+                        "interpolate", ["linear"], ['get', 'sustainability'],
+                        0, 'red',
+                        50, 'yellow',
+                        100, '#55ff55'
+                    ],
+                    'fill-extrusion-height': ['*', 10, ['get', 'sustainability']],
                     'fill-extrusion-base': 0,
                     'fill-extrusion-opacity': 0.8
                 }
@@ -279,8 +335,13 @@ initMap = () => {
                     'visibility': "none"
                 },
                 'paint': {
-                    'fill-extrusion-color': '#ffff22',
-                    'fill-extrusion-height': ['get', 'equality'],
+                    'fill-extrusion-color': [
+                        "interpolate", ["linear"], ['get', 'equality'],
+                        0, 'red',
+                        50, 'yellow',
+                        100, '#55ff55'
+                    ],
+                    'fill-extrusion-height': ['*', 10, ['get', 'equality']],
                     'fill-extrusion-base': 0,
                     'fill-extrusion-opacity': 0.8
                 }
@@ -295,8 +356,13 @@ initMap = () => {
                     'visibility': "none"
                 },
                 'paint': {
-                    'fill-extrusion-color': '#ffffff',
-                    'fill-extrusion-height': ['get', 'score'],
+                    'fill-extrusion-color': [
+                        "interpolate", ["linear"], ['get', 'score'],
+                        0, 'rgba(249,69,219,0.6)',
+                        50, 'rgba(249,69,219,0.8)',
+                        100, 'rgba(249,69,219,1)'
+                    ],
+                    'fill-extrusion-height': ['*', 10, ['get', 'score']],
                     'fill-extrusion-base': 0,
                     'fill-extrusion-opacity': 0.8
                 }
