@@ -43,6 +43,7 @@ initFilters = (configuration, map, offices) => {
             tr.append('td').html(function (d) { return d.properties.office; });
             tr.append('td').html(function (d) { return d.properties.company; });
             tr.append('td').html(function (d) { return d.properties.revenue; });
+            tr.append('td').html(function (d) { return d.properties.cost; });
             tr.append('td').html(function (d) { return d.properties.numOffices; });
             tr.append('td').html(function (d) { return d.properties.nearby; });
             tr.append('td').html(function (d) { return d.properties.sustainability; });

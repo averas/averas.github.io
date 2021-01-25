@@ -9,8 +9,15 @@ initMap = () => {
             zoom: 9.5,
             attributionControl: false
         });
-
+        function rotateCamera(timestamp) {
+            // clamp the rotation between 0 -360 degrees
+            // Divide timestamp by 100 to slow rotation to ~10 degrees / sec
+            map.rotateTo((timestamp / 100) % 360, { duration: 0 });
+            // Request the next frame of the animation.
+            requestAnimationFrame(rotateCamera);
+            }
         map.on('load', () => {
+            //rotateCamera(0);
 
             map.addLayer({
                 'id': 'sky',
