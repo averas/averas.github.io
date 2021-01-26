@@ -129,10 +129,11 @@
                 </div>
             </div>
         </div>
-        <div class="section">
-            <div style="display:flex;flex-direction:row;">
-                <div class="left" style="flex: 1;padding:50px">
-                    <pre style="border: 1px solid rgba(155,162,178,.4);border-radius: 8px;"><code class="javacsript">
+
+        <div class="section" style="width:900px">
+                <div class="section-header">👾 YOUR TASK</div>
+                <p class="paragraph" style="text-align: left;">You have now interacted with the dataset and hopefully have a feeling for its different dimensions and their characteristics. Now it's time to write an office scoring algorithm for the marketing department! As you may have noticed in the visualisation, the score for all offices is uniformly distributed between 0 and 100. Your job is to write a new scoring function that, based on the different dimensions, prioritises offices for business. Head over to <a href="https://codepen.io/averas/pen/zYKVpPL/left?editors=0010" target="_blank">CodePen</a> and start working on your scoring function. You can see a couple of examples here below and more instructions over at CodePen. Good luck!</p>
+                <pre style="width:800px;border: 1px solid rgba(155,162,178,.4);border-radius: 8px;"><code class="javacsript">
 /* We only work with sustainble companies! */
 var scoreFunction = (office) => {
     if (office.properties.sustainability < 90)
@@ -155,29 +156,25 @@ var scoreFunction = (office) => {
 };
 
 /* Scaling can be done with simple arithmetic like above, 
-   but you can also use d3 scales for more advanced scaling */
+    but you can also use d3 scales for more advanced scaling */
 
 const revenueScale = d3.scaleLinear()
-  .domain([0, 1000])
-  .range([0, 50]);
+    .domain([0, 1000])
+    .range([0, 50]);
 
 const costScale = d3.scalePow()
-  .exponent(2)
-  .domain([0, 500])
-  .range([50, 0]);
+    .exponent(2)
+    .domain([0, 500])
+    .range([50, 0]);
 
 var scoreFunction = (office) => {
     return revenueScale(office.properties.revenue) + costScale(office.properties.cost);
 };
-
-                                                </code></pre>
-                </div>
-                <div class="right" style="flex: 1;display: flex;flex-direction: column;justify-content: center;padding-left:10px">
-                    <div class="section-header">👾 YOUR TASK</div>
-                    <p class="paragraph" style="text-align: left;">You have now interacted with the dataset and hopefully have a feeling for its different dimensions and their characteristics. Now it's time to write an office scoring algorithm for the marketing department! As you may have noticed in the visualisation, the score for all offices is uniformly distributed between 0 and 100. Your job is to write a new scoring function that, based on the different dimensions, prioritises offices for business. Head over to <a href="https://codepen.io/averas/pen/zYKVpPL/left?editors=0010" target="_blank">CodePen</a> and start working on your scoring function. You can see a couple of examples here on the left and more instructions over at CodePen. Good luck!</p>
-                </div>
+                            
+                                                                            </code></pre>
             </div>
-        </div>
+
+
 
     </div>
 
