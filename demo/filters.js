@@ -48,7 +48,7 @@ initFilters = (configuration, map, offices) => {
             tr.append('td').html(function (d) { return d.properties.nearby; });
             tr.append('td').html(function (d) { return d.properties.sustainability; });
             tr.append('td').html(function (d) { return d.properties.equality; });
-            tr.append('td').html(function (d) { return d.properties.score; });
+            tr.append('td').html(function (d) { return Math.round(d.properties.score); });
         }
         charts.forEach((chart) => chart.on("filtered", apply_filters));
         apply_filters();
