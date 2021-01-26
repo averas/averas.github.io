@@ -2,7 +2,9 @@
     try {
         const map = await initMap();
         const offices = await d3.json(`${baseUrl}data/offices.json`);
-
+        
+        while (!scoreFunction) {}
+        
         offices.features.forEach((o) => o.properties.score = scoreFunction(o))
 
         const configuration = [
