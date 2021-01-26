@@ -45,7 +45,7 @@
     <div style="text-align: center">Tele2 Score</div>
     <div id='score-chart'></div>
   </div>
-  <div id="bottom-panel">
+  <div class="noscrollbars" id="bottom-panel">
     <table id="table" width="100%" cellspacing="0" cellpadding="2" style="table-layout: fixed;">
       <thead>
         <tr>
@@ -66,12 +66,13 @@
   </div>
   <script src="map.js"></script>
   <script src="filters.js"></script>
+  <script src="main.js"></script>
   <script>
     var baseUrl = "";
     var scoreFunction = (office) => {
       return Math.round(Math.random() * 100);
     };
+    runWorkShop();
   </script>
-  <script src="main.js"></script>
 </body>
 </html>

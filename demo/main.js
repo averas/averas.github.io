@@ -1,9 +1,7 @@
-(async () => {
+runWorkShop = async () => {
     try {
         const map = await initMap();
         const offices = await d3.json(`${baseUrl}data/offices.json`);
-        
-        while (!scoreFunction) { await setTimeout(() => {}, 500) }
         
         offices.features.forEach((o) => o.properties.score = scoreFunction(o))
 
@@ -110,4 +108,4 @@
     } catch (e) {
         console.log(e)
     }
-})();
+}
