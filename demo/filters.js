@@ -41,7 +41,6 @@ initFilters = (configuration, map, offices) => {
             tr.exit().remove();
             var tr = tr.enter().append("tr");
             tr.append('td').html(function (d) { return d.properties.office; });
-            tr.append('td').html(function (d) { return d.properties.company; });
             tr.append('td').html(function (d) { return d.properties.revenue; });
             tr.append('td').html(function (d) { return d.properties.cost; });
             tr.append('td').html(function (d) { return d.properties.numOffices; });
