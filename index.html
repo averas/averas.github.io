@@ -159,8 +159,8 @@ var scoreFunction = (office) => {
     but you can also use d3 scales for more advanced scaling */
 
 const revenueScale = d3.scaleLinear()
-    .domain([0, 1000])
-    .range([0, 50]);
+    .domain([0, 1000]) /* Input domain */
+    .range([0, 50]); /* Output range */
 
 const costScale = d3.scalePow()
     .exponent(2)
