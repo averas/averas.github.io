@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Tele2 - Women In Tech Workshop</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/hl.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+    <link href="/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <video class="background-video" autoplay="" muted loop="" playsinline="">
+            <source src="/zooming.mp4" data-wf-ignore="true"></video>
+        <div class="fade"></div>
+        <img class="logo" src="/tele2-transparent.png"></img>
+        <div class="cover">
+
+            <div
+                style="height: 850px; width:1024px;display: flex;justify-content:flex-end;align-items:center;flex-direction: column;">
+                <div class="header" style="color: white">Women In Tech Workshop</div>
+                <div class="sub-header" style="color: white;text-shadow: 0 0 2px #fff, 0 0 0px #fff, 0 0 10px #e60073, 0 0 10px #e60073, 0 0 20px #e60073, 0 0 20px #e60073, 0 0 30px #e60073;
+                ">Diversity and sustainability as an intergral part of our business decisions</div>
+                <div class="author">Rasmus Aveskogh, Chief Architect of Technology, Tele2</div>
+                <div style="margin-top: 50px;width:30px;height:50px">
+                    <div class="chevron"></div>
+                    <div class="chevron"></div>
+                    <div class="chevron"></div>
+                </div>
+                <div style="margin:15px;cursor: pointer;color:rgb(83, 212, 169)"
+                    onclick="window.scroll({top: 900, left: 0, behavior: 'smooth'})">GET STARTED</div>
+            </div>
+        </div>
+
+
+
+    </header>
+
+    <div class="sections">
+        <div class="section" style="width:900px">
+            <div class="section-header">🍻 INTRODUCTION</div>
+            <p class="paragraph">In this workshop you will analyze a mockup dataset to determine which B2B (business) customers
+                Tele2 should go after based on their scoring on diversity and sustainability! Your job is to first explore the dataset using an interactive visulisation, and then - when
+                you understand the data better - update our algorithm that does the job for us automatically. This is a
+                very common approach in data-driven organisations like Tele2. The pre-processing of data and visualisations for the workshop is entirely produced using JavaScript, one of many languages we use, especially for visualisation.</p>
+            <video class="section-video" autoplay="" muted loop="" playsinline="">
+                <source src="/offices_lr.mp4" data-wf-ignore="true"></video>
+        </div>
+        <div class="section" style="width:900px">
+            <div class="section-header">🕹 GETTING TO KNOW THE DATASET</div>
+            <p class="paragraph">The dataset represents roughly 4000 office locations in the greater Stockholm area.
+                Each datapoint is one office location with some attributes describing the characteristics of the office. The black/purple markers are Tele2 network hub sites, where we can connect customers. Your task will be to determine how we can include diversity and sustainability
+                when we prioritise the offices for marketing. There is no <i>right</i> way of
+                doing this, and reflecting over multiple angles is part of the workshop! Start by playing around with the <a href="demo/" target="_blank">interactive visualisation</a> while reading about the different data dimensions below. When you feel that you have a basic understanding for the dataset it's time for you to write some code! 😊</p>
+            <video class="section-video" autoplay="" muted loop="" playsinline="">
+                <source src="/analyzing_lr.mp4" data-wf-ignore="true"></video>
+        </div>
+        <div class="section">
+            <div style="display:flex;flex-direction:row;">
+                <div class="left" style="flex: 2;">
+                    <video class="section-video" autoplay="" muted loop="" playsinline="">
+                        <source src="/revenue_lr.mp4" data-wf-ignore="true"></video>
+                </div>
+                <div class="right" style="flex: 1;display: flex;flex-direction: column;justify-content: center;padding-left:40px">
+                    <div class="section-header">💵 COMPANY REVENUE</div>
+                    <p class="paragraph" style="text-align: left;">All offices in the dataset belong to a company with a certain yearly income, or revenue. Arguably, companies with higher revenue may generate more business for us. You can select the REVENUE mode in the visulisation and filter offices based on revenue in the filters to the right. How important is revenue when finding potential customers?</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div style="display:flex;flex-direction:row;">
+                <div class="left" style="flex: 1;display: flex;flex-direction: column;justify-content: center;padding-right:40px">
+                    <div class="section-header">💸 LEASED LINE COST</div>
+                    <p class="paragraph" style="text-align: left;">The black/purple markers on the map represent network hub sites where we can connect customers with leased lines. The cost of leased lines goes up with distance, so we might prefer connecting offices that are close to our sites. Select the COST mode in the visualisation and get a feel for how leased line cost goes up with distance to the nearest network site.</p>
+                </div>
+                <div class="right" style="flex: 2;">
+                    <video class="section-video" autoplay="" muted loop="" playsinline="">
+                        <source src="/connectionCost_lr.mp4" data-wf-ignore="true"></video>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div style="display:flex;flex-direction:row;">
+                <div class="left" style="flex: 2;">
+                    <img src="/numOffices.png" style="width: 100%"/>
+                </div>
+                <div class="right" style="flex: 1;display: flex;flex-direction: column;justify-content: center;padding-left:40px">
+                    <div class="section-header">🏢 NUMBER OF OFFICES</div>
+                    <p class="paragraph" style="text-align: left;">Although each data point only represents a single office, there is information on the data points on how many offices the parent company has in total. An important business opportunity for communication providers like Tele2 is interconnecting offices with each other, therefore companies with many offices may be more attractive customers than companies with fewer offices.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div style="display:flex;flex-direction:row;">
+                <div class="left" style="flex: 1;display: flex;flex-direction: column;justify-content: center;padding-right:40px">
+                    <div class="section-header">👀 OFFICE CLUSTERS</div>
+                    <p class="paragraph" style="text-align: left;">As mentioned above, leased line costs between our network hubs and customer offices impact the business case for any single office significantly. One way of approaching this is to lease lines between local customer deployments, which can be much shorter distances. This means that "clusters" of offices with many nearby offices (regardless of company) may be more attractive than isolated offices.</p>
+                </div>
+                <div class="right" style="flex: 2;">
+                    <video class="section-video" autoplay="" muted loop="" playsinline="">
+                        <source src="/nearby.mp4" data-wf-ignore="true"></video>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div style="display:flex;flex-direction:row;">
+                <div class="left" style="flex: 2;">
+                        <img src="/equality.png" style="width: 100%"/>
+
+                </div>
+                <div class="right" style="flex: 1;display: flex;flex-direction: column;justify-content: center;padding-left:40px">
+                    <div class="section-header">👍 DIVERSITY/EQUALITY SCORE</div>
+                    <p class="paragraph" style="text-align: left;">A very important area for Tele2 is diversity and equality. In 2020, International Equileap ranked Tele2 number one on gender equality among Swedish OMX30 companies and we drive an ambitious diversity and inclusion agenda, which you can read about <a href="https://www.tele2.com/sustainability/our-sustainability-strategy/diversity-and-inclusion/" target="_blank">here</a>. How could diversity be a factor in whom we direct our business efforts towards? Contemplate over why and how diversity scoring could be part of a business model.</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div style="display:flex;flex-direction:row;">
+                <div class="left" style="flex: 1;display: flex;flex-direction: column;justify-content: center;padding-right:40px">
+                    <div class="section-header">🌲 SUSTAINABILITY SCORE</div>
+                    <p class="paragraph" style="text-align: left;">Tele2 also values sustainability very high and has several ongoing initatives to reduce environmental footprint and to be in the forefont of sustainable business. As the first telco in the Nordics and the Baltics, Tele2 is now climate neutral in its own operations, consuming 100 percent renewable electricity and offsetting remaining emissions. We just launched our new sustainability strategy where we are committed to lead in sustainability, read about it <a href="https://www.tele2.com/sustainability/" target="_blank">here</a>. Like with diversity, consider to what extent this could be incorporated in our business model.</p>
+                </div>
+                <div class="right" style="flex: 2;">
+                        <img src="/sustainability.png" style="width: 100%"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" style="width:900px">
+                <div class="section-header">👾 YOUR TASK</div>
+                <p class="paragraph">You have now interacted with the dataset and hopefully have a feeling for its different dimensions and their characteristics. Now it's time to update our office scoring algorithm for the marketing department! As you may have noticed in the visualisation, the score is optimized towards high revenue and low cost. Your job is to update the scoring function to include diversity and sustainability. Head over to <a href="https://codepen.io/averas/pen/rNWKJQp/left?editors=0010" target="_blank">CodePen</a> and start working on your scoring function. You can see a couple of examples here below and more instructions over at CodePen. The table in the visualisation shows your top ranking office locations.<br/><br/>Good luck!</p>
+                <pre style="width:800px;border: 1px solid rgba(155,162,178,.4);border-radius: 8px;"><code class="javacsript">
+/* Find offices with high revenue and low cost! This is the one currently used. */
+var scoreFunction = (office) => {
+    let score = office.properties.revenue / 20; /* Scale to 0-50 */
+    score += 50 - Math.min(office.properties.cost, 50)
+    return score;
+};
+
+/* We only work with sustainble companies! */
+var scoreFunction = (office) => {
+    if (office.properties.sustainability < 90)
+        return 0;
+    return office.properties.revenue / 10; /* Scale to 0-100 */
+};
+
+/* Find clustered offices with high equality score! */
+var scoreFunction = (office) => {
+    let score = office.properties.nearby * 0.5; /* Scale to 0-25 */
+    score += office.properties.equality * 0.75; /* Scale to 0-75 */
+    return score;
+};
+
+/* Scaling can be done with simple arithmetic like above, 
+    but you can also use d3 scales for more advanced scaling */
+
+const revenueScale = d3.scaleLinear()
+    .domain([0, 1000]) /* Input domain */
+    .range([0, 50]); /* Output range */
+
+const costScale = d3.scalePow()
+    .exponent(2)    
+    .domain([0, 500])
+    .range([50, 0]);
+
+var scoreFunction = (office) => {
+    return revenueScale(office.properties.revenue) + costScale(office.properties.cost);
+};
+                            
+                                                                            </code></pre>
+            </div>
+
+
+
+    </div>
+
+
+
+
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

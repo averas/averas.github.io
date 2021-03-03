@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Tele2 - Women In Tech Workshop</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://dc-js.github.io/dc.js/js/crossfilter.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/4.2.3/dc.min.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.10/dc.min.css" />
+  <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<body>
+  <div id="map"></div>
+  <div id="controls">
+    <button class="button active" id="heatmap">Heatmap</button>
+    <button class="button" id="revenue">Revenue</button>
+    <button class="button" id="cost">Cost</button>
+    <button class="button" id="num-offices">Offices</button>
+    <br />
+    <button class="button" id="nearby-offices">Nearby</button>
+    <button class="button" id="sustainability">Sustainability</button>
+    <button class="button" id="equality">Diversity</button>
+    <button class="button" id="score">Tele2 Score</button>
+    <br />
+    <div id="description" style="padding: 10px">Each marker on the map is a company office.</div>
+  </div>
+  <div class="noscrollbars" id='explore'>
+    <div style="text-align: center">Company Total Revenue</div>
+    <div id='revenue-chart'></div>
+    <div style="text-align: center">Cost to Connect to Hub</div>
+    <div id='cost-chart'></div>
+    <div style="text-align: center">Company Total Number of Offices</div>
+    <div id='num-offices-chart'></div>
+    <div style="text-align: center">Number of Nearby Offices</div>
+    <div id='nearby-offices-chart'></div>
+    <div style="text-align: center">Sustainability Score</div>
+    <div id='sustainability-chart'></div>
+    <div style="text-align: center">Diversity/Equality Score</div>
+    <div id='equality-chart'></div>
+    <div style="text-align: center">Tele2 Score</div>
+    <div id='score-chart'></div>
+  </div>
+  <div class="noscrollbars" id="bottom-panel">
+    <table id="table" width="100%" cellspacing="0" cellpadding="2" style="table-layout: fixed;">
+      <thead>
+        <tr style="color:rgb(209, 209, 25)">
+          <th align="left" style="width: 100px">Office</th>
+          <th align="left" style="width: 40px">Revenue</th>
+          <th align="left" style="width: 40px">Cost</th>
+          <th align="left" style="width: 40px"># Offices</th>
+          <th align="left" style="width: 70px"># Nearby Offices</th>
+          <th align="left" style="width: 70px">Sustainability</th>
+          <th align="left" style="width: 40px">Diversity</th>
+          <th align="left" style="width: 40px">Score</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  <script src="map.js"></script>
+  <script src="filters.js"></script>
+  <script src="main.js"></script>
+  <script>
+    var baseUrl = "";
+    var scoreFunction = (office) => {
+      let score = office.properties.revenue / 20; /* Scale to 0-50 */
+      score += 50 - Math.min(office.properties.cost, 50);
+      return score;
+    };
+    runWorkShop();
+  </script>
+</body>
+
+</html>
